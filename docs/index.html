@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Blazor (II)</title>
+
+        <meta name="description" content="Blazor">
+        <meta name="author" content="Dani Herrera @ UdG">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="dist/reset.css">
+        <link rel="stylesheet" href="dist/reveal.css">
+        <link rel="stylesheet" href="dist/theme/white.css" id="theme">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+                    <script type="text/template">
+                        ## Blazor
+
+                        ![UdG](./imatges/udg.png)
+
+                        Maig'2021 <!-- .element style="font-size:50%;" -->
+
+                        --
+
+                        #### by
+                        - dani.herrera@udg.edu
+
+                        --
+
+                        #### Objectius
+
+                        Desenvolupament de dues aplicacions Blazor
+                        
+                        ![](./imatges/Blazor.png)<!-- .element style="width:50%;" -->
+
+                        --
+
+                        #### Pla 3 dies
+
+                        * Sessió 1: Marcador de basketball 
+                        * Sessió 2 i 3: CRUD (Create, Retrieve, Update, Delete)
+
+                        --
+
+                        ### Documentació
+
+                        - [Presentació Curs (Dani Herrera)](https://ctrl-alt-d.github.io/curs-blazor-UdG-II/)
+
+                    </script>
+                </section>
+
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+                    <script type="text/template">
+                        ### Sessió 1 - Marcador de basketball                         
+
+                        --
+
+                        ### Objectiu
+
+                        * Desenvolupar app blazor server i familiaritzar-nos amb els components, paràmetres i el seu cicle de vida.
+
+                        --
+
+                        ### Crear aplicació BlazorServer
+
+                        * `dotnet new blazorserver -o ElMeuProjecte` 
+                        * `dotnet new sln`
+                        * `dotnet sln add ElMeuProjecte`
+                        * Provar el que ha generat el cli
+                        * Fer neteja de les pàgines que el cli crea per defecte
+
+                        --
+
+                        ### Presentar el BackendDelFrontEnd
+
+                        * Concepte del BackendDelFrontEnd.
+                        * Ens centrem en Blazor UI. Copiarem la funcionalitat d'un projecte ja fet.
+                        * El BackendDelFrontEnd és una caixa negra que sabrà mantenir l'estat del marcador de basketball.
+                        * Aprendrem que fa el BackendDelFrontEnd a partir dels testos.
+
+                        
+
+                    </script>
+                </section>
+
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+                    <script type="text/template">
+                        ### Sessió 2: CRUD
+
+                        - Part 1: R
+                        - Part 2: CRUD
+
+                        --
+
+                        ### Part 1: IoC & DI
+
+
+
+                    </script>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script>
+
+            // Also available as an ES module, see:
+            // https://revealjs.com/initialization/
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                center: true,
+                hash: true,
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+            });
+
+        </script>
+
+    </body>
+</html>
