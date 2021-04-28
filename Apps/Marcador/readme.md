@@ -2,7 +2,7 @@
 
 Construim un component per mostrar el resultat d'un scoreboard de basketball. El scoreboard es refresca de manera automàtica per a tothon.
 
-![](../../docs/imatges/appScoreboard.png)
+![](../../docs/imatges/b.gif)
 
 ## Components:
 
