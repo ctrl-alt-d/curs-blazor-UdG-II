@@ -1,14 +1,14 @@
-# Aplicació de demo Marcador de basketball
+# Aplicació de demo Scoreboard de basketball
 
-Construim un component per mostrar el resultat d'un marcador de basketball. El marcador es refresca de manera automàtica per a tothon.
+Construim un component per mostrar el resultat d'un scoreboard de basketball. El scoreboard es refresca de manera automàtica per a tothon.
 
-![](../../docs/imatges/appMarcador.png)
+![](../../docs/imatges/appScoreboard.png)
 
 ## Components:
 
-* MarcadorBackendDelFrontEnd.Abstracts: Interfícies pública del marcador, el component la utilitza.
-* MarcadorBackendDelFrontEnd.InMemory: Implementació de la interfície del marcador.
-* MarcadorBackendDelFrontEnd.Test: Testos de la implementació.
-* MarcadorUI: Component blazor que mostra el marcador.
-* MarcadorUI.Test: Testos del component blazor que mostra el marcador.
-* MarcadorBlazorServer: Aplicació blazor server que conté el component.
+* ScoreboardService.Abstracts: Interfícies pública del scoreboard, el component la utilitza.
+* ScoreboardService.InMemory: Implementació de la interfície del scoreboard.
+* ScoreboardService.Test: Testos de la implementació.
+* ScoreboardUI: Component blazor que mostra el scoreboard.
+* ScoreboardUI.Test: Testos del component blazor que mostra el scoreboard.
+* ScoreboardBlazorServer: Aplicació blazor server que conté el component.

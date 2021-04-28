@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ScoreboardService.Abstracts\ScoreboardService.Abstracts.csproj" />
+    <ProjectReference Include="..\ScoreboardService.InMemory\ScoreboardService.InMemory.csproj" />
+    <ProjectReference Include="..\ScoreboardUI\ScoreboardUI.csproj" />
+  </ItemGroup>
+  
+</Project>
