@@ -1,3 +1,25 @@
 ﻿<div class="my-component">
-    This Blazor component is defined in the <strong>MarcadorUI</strong> library.
+    Hi! This Blazor component is defined in the <strong>MarcadorUI</strong> library.
+
+    <div class="puntslocal">@(MarcadorMachine.PuntsLocal)</div>
+    <div class="puntsvisitant">@(MarcadorMachine.PuntsVisitant)</div>
+
+    <button type="button"
+            id="incrementalocal"
+            @onclick="MarcadorMachine.IncrementaLocal">
+        Local +
+    </button>
+
+    <button type="button"
+            id="incrementavisitant"
+            @onclick="MarcadorMachine.IncrementaVisitant">
+        Visitant +
+    </button>
+
+    <button type="button"
+            id="posarmarcadora0"
+            @onclick="MarcadorMachine.PosarMarcadorA0">
+        Visitant +
+    </button>
+
 </div>

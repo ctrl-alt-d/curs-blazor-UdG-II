@@ -10,73 +10,75 @@ namespace MarcadorBackendDelFrontEnd.Test
     public class MarcadorBackendDelFrontEndTest
     {
         [Fact]
-        public void IncrementaBeElsMarcadorsTest()
+        public void ElsMarcadorsSincrementenCorrectament()
         {
             //Given: un marcador en marxa
-            IMarcadorMachine marcador = new MarcadorMachine();
+            IMarcadorMachine marcadorMachine = new MarcadorMachine();
 
-            IncrementaLocalIvisitant(marcador);
+            _FesPujarElMarcador(marcadorMachine, 10, 20);
 
-            var expectedPuntsLocal = marcador.PuntsLocal + 1;
-            var expectedPuntsVisitant = marcador.PuntsVisitant + 1;
+            var expectedPuntsLocal = marcadorMachine.PuntsLocal + 1;
+            var expectedPuntsVisitant = marcadorMachine.PuntsVisitant + 1;
 
             //When: incrementem el marcador per a cada equip
-            marcador.IncrementaLocal();
-            marcador.IncrementaVisitant();
+            marcadorMachine.IncrementaLocal();
+            marcadorMachine.IncrementaVisitant();
 
             //Then: els punts s'han incrementat
-            Assert.Equal(expectedPuntsLocal, marcador.PuntsLocal);
-            Assert.Equal(expectedPuntsVisitant, marcador.PuntsVisitant);
+            Assert.Equal(expectedPuntsLocal, marcadorMachine.PuntsLocal);
+            Assert.Equal(expectedPuntsVisitant, marcadorMachine.PuntsVisitant);
         }
 
         [Fact]
-        public void SapPosarElMarcadorA0Test()
+        public void SapPosarElMarcadorA0()
         {
             //Given: un marcador en marxa
-            IMarcadorMachine marcador = new MarcadorMachine();
+            IMarcadorMachine marcadorMachine = new MarcadorMachine();
 
-            IncrementaLocalIvisitant(marcador);
+            _FesPujarElMarcador(marcadorMachine, 10, 20);
 
             var expectedPuntsLocal = 0;
             var expectedPuntsVisitant = 0;
 
             //When: incrementem el marcador per a cada equip
-            marcador.PosarMarcadorA0();
+            marcadorMachine.PosarMarcadorA0();
 
             //Then: els punts s'han incrementat
-            Assert.Equal(expectedPuntsLocal, marcador.PuntsLocal);
-            Assert.Equal(expectedPuntsVisitant, marcador.PuntsVisitant);
+            Assert.Equal(expectedPuntsLocal, marcadorMachine.PuntsLocal);
+            Assert.Equal(expectedPuntsVisitant, marcadorMachine.PuntsVisitant);
         }
 
         [Fact]
-        public void AvisaCorrectamentDelsCanvisTest()
+        public void AvisaCorrectamentDelsCanvisAlMarcador()
         {
             //Given: Una sèrie d'accions que provoquen canvis
-            IMarcadorMachine marcador = new MarcadorMachine();
+            IMarcadorMachine marcadorMachine = new MarcadorMachine();
 
             var comptador_de_canvis = 0;
-            marcador.CanvisAlMarcador += (marcador, e) => comptador_de_canvis++;
+            marcadorMachine.CanvisAlMarcador += (marcador, e) => comptador_de_canvis++;
 
             List<Action> AccionsQueProvoquenCanvis = new()
             {
-                () => marcador.IncrementaLocal(),
-                () => marcador.IncrementaVisitant(),
-                () => marcador.PosarMarcadorA0(),
-                () => marcador.AfegeixExpectador(),
+                () => marcadorMachine.IncrementaLocal(),
+                () => marcadorMachine.IncrementaVisitant(),
+                () => marcadorMachine.PosarMarcadorA0(),
+                () => marcadorMachine.AfegeixExpectador(),
             };
+
+            var expectedNumeroDeCanvis = AccionsQueProvoquenCanvis.Count;
 
             //When: Invoquem les accions
             AccionsQueProvoquenCanvis.ForEach(accio => accio());
 
             //Then: Rebem les notificacions de canvis
-            Assert.Equal(AccionsQueProvoquenCanvis.Count(), comptador_de_canvis);
+            Assert.Equal(expectedNumeroDeCanvis, comptador_de_canvis);
         }
 
         // Helpers ----------------------------
-        private static void IncrementaLocalIvisitant(IMarcadorMachine marcador)
+        private static void _FesPujarElMarcador(IMarcadorMachine marcadorMachine, int locals, int visitants)
         {
-            Enumerable.Range(1, 5).ToList().ForEach(_ => marcador.IncrementaLocal());
-            Enumerable.Range(1, 7).ToList().ForEach(_ => marcador.IncrementaVisitant());
+            Enumerable.Range(0, locals).ToList().ForEach(_ => marcadorMachine.IncrementaLocal());
+            Enumerable.Range(0, visitants).ToList().ForEach(_ => marcadorMachine.IncrementaVisitant());
         }
     }
 }

@@ -1,3 +1,5 @@
+**/.vs/*
+
 Apps/**/bin
 Apps/**/obj
 
