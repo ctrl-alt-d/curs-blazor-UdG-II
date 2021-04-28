@@ -1,0 +1,30 @@
+﻿<div class="componentscoreboard">
+
+    <div class="score">
+        <div class="homescore">@(ScoreboardMachine.HomeScore)</div>
+        <div class="separador"> - </div>
+        <div class="awayscore">@(ScoreboardMachine.AwayScore)</div>
+    </div>
+
+    <div class="buttonsincrementa">
+        <button type="button" 
+                id="add1tohome"
+                @onclick="ScoreboardMachine.Add1ToHome">
+            Home +
+        </button>
+        <button type="button" 
+                id="add1toaway"
+                @onclick="ScoreboardMachine.Add1ToAway">
+            Away +
+        </button>
+    </div>
+
+    <div class="altresbuttons">
+        <button type="button"
+                id="posarscoreboarda0"
+                @onclick="ScoreboardMachine.ScoreboardTo0">
+            Scoreboard to 0
+        </button>
+    </div>
+
+</div>
