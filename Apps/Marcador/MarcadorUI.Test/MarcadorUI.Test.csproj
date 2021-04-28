@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MarcadorUi\MarcadorUI.csproj" />
+    <ProjectReference Include="..\MarcadorUI\MarcadorUI.csproj" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />    
   </ItemGroup>
 

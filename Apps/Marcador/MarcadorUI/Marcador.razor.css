@@ -1,6 +1,52 @@
-.my-component {
+.componentmarcador {
     border: 5px dashed rgb(68, 0, 255);
     padding: 1em;
     margin: 1em 0;
-    background-image: url('background.png');
+    background-image: url('fons.png');
+    max-width: 1000px;
+    min-height: 400px;
+}
+
+.puntuacio {
+    font-size: 150px;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: yellow;
+    text-align: center;
+}
+
+.puntslocal, .puntsvisitant, .separador {
+    display: inline-block;
+    align-items: center;
+    height: 200px;
+}
+
+.puntslocal, .puntsvisitant {
+    width: 300px;
+}
+
+button {
+    border-radius: 30px;    
+    color: rgb(49, 43, 43);
+    border: 1px solid;
+    border-color: brown;
+}
+
+.buttonsincrementa, .altresbuttons {
+    text-align: center;    
+    margin-top: 50px;
+}
+
+.buttonsincrementa button{
+    background-color: tomato;
+    margin-left: 70px;
+    margin-right: 70px;
+    height: 100px;
+    width: 200px;
+    font-size: 40px;
+}
+
+.altresbuttons button {
+    background-color:darkred;
+    color:gainsboro;
 }

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MarcadorBackendDelFrontEnd.Abstracts;
 using Moq;
 using FluentAssertions;
+using MarcadorUI;
 
 namespace MarcadorUI.Test
 {
@@ -15,7 +16,7 @@ namespace MarcadorUI.Test
         [InlineData(101, 100)]
         public void ElMarcadorReflexaCorrectamentLaPuntuacio(int puntslocal, int puntsvisitant)
         {
-            // Giving: un marcador machine amb puntuació
+            // Giving: un marcador machine amb puntuaciï¿½
             var marcadorMock = new Mock<IMarcadorMachine>();
             this.Services.AddSingleton(_ => marcadorMock.Object);
 
