@@ -7,7 +7,7 @@
            class="form-control @IsValid_txt"
            id="validationServer01"
            value="@(BindConverter.FormatValue(CurrentValue))"
-           @onchange="EventCallback.Factory.CreateBinder<string>(this, __value => CurrentValueAsString = __value, CurrentValueAsString)">
+           @onchange="(e) =>CurrentValueAsString = e.Value.ToString()">
 
     @if (!IsValid)
     {
@@ -23,6 +23,7 @@
     [Parameter] public string Label { get; set; } = String.Empty;
     [Parameter] public string Css { get; set; } = String.Empty;
     [CascadingParameter] EditContext CurrentEditContext { get; set; } = default!;
+
     private EditContext _previousEditContext;
     private EventHandler<ValidationStateChangedEventArgs> _validationStateChangedHandler;
     private FieldIdentifier _fieldIdentifier;

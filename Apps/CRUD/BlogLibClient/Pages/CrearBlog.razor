@@ -1,0 +1,30 @@
+﻿@page "/Crearblog"
+
+@inject IBlogBusinessLayer _BL
+@inject NavigationManager _NM
+
+@using System.ComponentModel.DataAnnotations
+
+<br />
+<h3>Creant blog i el seu primer post</h3>
+
+<EditForm Model="MyViewModel" OnValidSubmit="Submit" class="row">
+
+    <DataAnnotationsValidator />
+
+    <CustomInputText @bind-Value="MyViewModel.Nom"
+                     Label="Nom del blog"
+                     Css="col-md-6" />
+    <CustomInputText @bind-Value="MyViewModel.NomPost"
+                     Label="Títol del primer post"
+                     Css="col-md-6" />
+
+   <div class="col-md-6">
+    <label for="validationServer03" class="form-label">Per adults</label>
+    <InputCheckbox class="form-check-input" @bind-Value="MyViewModel.ContingutPerAdults" />
+  </div>
+
+    <div class="col-12 mt-3">
+        <button class="btn btn-primary" type="submit">Crear el blog</button>
+    </div>
+</EditForm>
