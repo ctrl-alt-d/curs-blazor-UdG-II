@@ -9,8 +9,8 @@ namespace ScoreboardService.InMemory
 
         public virtual int AwayScore {get; private set;}
 
-        protected virtual string _HomeTeamName {get; set;} = "Local";
-        protected virtual string _AwayTeamName {get; set;} = "Visitant";
+        protected virtual string _HomeTeamName {get; set;} = "Home";
+        protected virtual string _AwayTeamName {get; set;} = "Away";
         public virtual string HomeTeamName {
             get => _HomeTeamName;
             set

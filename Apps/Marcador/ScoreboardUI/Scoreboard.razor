@@ -10,18 +10,18 @@
         <button type="button" 
                 id="add1tohome"
                 @onclick="ScoreboardMachine.Add1ToHome">
-            Home +
+            @ScoreboardMachine.HomeTeamName +
         </button>
         <button type="button" 
                 id="add1toaway"
                 @onclick="ScoreboardMachine.Add1ToAway">
-            Away +
+            @ScoreboardMachine.AwayTeamName +
         </button>
     </div>
 
     <div class="altresbuttons">
         <button type="button"
-                id="posarscoreboarda0"
+                id="scoreboardto0"
                 @onclick="ScoreboardMachine.ScoreboardTo0">
             Scoreboard to 0
         </button>

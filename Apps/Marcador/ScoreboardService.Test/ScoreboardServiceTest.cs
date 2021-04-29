@@ -9,13 +9,16 @@ namespace ScoreboardService.Test
 {
     public class ScoreboardServiceTest
     {
+        /// <summary>
+        /// Els punts s'incrementen correctament
+        /// </summary>
         [Fact]
-        public void ElsScoreboardsSincrementenCorrectament()
+        public void ScoreboardRaiseUpAsExpected()
         {
             //Given: un scoreboard en marxa
             IScoreboardMachine scoreboardMachine = new ScoreboardMachine();
 
-            _FesPujarElScoreboard(scoreboardMachine, 10, 20);
+            _RaiseUpScoreboard(scoreboardMachine, 10, 20);
 
             var expectedHomeScore = scoreboardMachine.HomeScore + 1;
             var expectedAwayScore = scoreboardMachine.AwayScore + 1;
@@ -29,13 +32,16 @@ namespace ScoreboardService.Test
             Assert.Equal(expectedAwayScore, scoreboardMachine.AwayScore);
         }
 
+        /// <summary>
+        /// El servei es posa a 0 quan li demanen
+        /// </summary>
         [Fact]
-        public void SapPosarElScoreboardA0()
+        public void IsAbleToSetScoreboardTo0()
         {
             //Given: un scoreboard en marxa
             IScoreboardMachine scoreboardMachine = new ScoreboardMachine();
 
-            _FesPujarElScoreboard(scoreboardMachine, 10, 20);
+            _RaiseUpScoreboard(scoreboardMachine, 10, 20);
 
             var expectedHomeScore = 0;
             var expectedAwayScore = 0;
@@ -48,14 +54,17 @@ namespace ScoreboardService.Test
             Assert.Equal(expectedAwayScore, scoreboardMachine.AwayScore);
         }
 
+        /// <summary>
+        /// El servei correctament quan hi ha canvis
+        /// </summary>
         [Fact]
-        public void AvisaCorrectamentDelsScoreboardHasChanged()
+        public void NotifiesScoreboardChanges()
         {
             //Given: Una sèrie d'accions que provoquen canvis
             IScoreboardMachine scoreboardMachine = new ScoreboardMachine();
 
-            var comptador_de_canvis = 0;
-            scoreboardMachine.ScoreboardHasChanged += (scoreboard, e) => comptador_de_canvis++;
+            var changes_counter = 0;
+            scoreboardMachine.ScoreboardHasChanged += (scoreboard, e) => changes_counter++;
 
             List<Action> AccionsQueProvoquenCanvis = new()
             {
@@ -71,14 +80,22 @@ namespace ScoreboardService.Test
             AccionsQueProvoquenCanvis.ForEach(accio => accio());
 
             //Then: Rebem les notificacions de canvis
-            Assert.Equal(expectedNumeroDeCanvis, comptador_de_canvis);
+            Assert.Equal(expectedNumeroDeCanvis, changes_counter);
         }
 
         // Helpers ----------------------------
-        private static void _FesPujarElScoreboard(IScoreboardMachine scoreboardMachine, int locals, int visitants)
+        /// <summary>
+        /// Helper per fer pujar la puntuació de l'scoreboard
+        /// </summary>
+        private static void _RaiseUpScoreboard(IScoreboardMachine scoreboardMachine, int locals, int visitants)
         {
-            Enumerable.Range(0, locals).ToList().ForEach(_ => scoreboardMachine.Add1ToHome());
-            Enumerable.Range(0, visitants).ToList().ForEach(_ => scoreboardMachine.Add1ToAway());
+            ExecuteNtimes(scoreboardMachine.Add1ToHome, locals);
+            ExecuteNtimes(scoreboardMachine.Add1ToAway, visitants);
+        }
+
+        private static void ExecuteNtimes(Action action, int n)
+        {
+            Enumerable.Range(0, n).ToList().ForEach(_ => action());
         }
     }
 }
