@@ -1,0 +1,60 @@
+﻿@page "/fetchdata"
+
+
+@inject IBlogBusinessLayer _BL
+
+<div class="">
+    <h1>Blogs</h1>
+</div>
+
+
+@if (LaLlistaDeBlogs == null)
+{
+    <p class="">Loading ...</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Data publicació</th>
+            <th scope="col">Títols dels posts</th>
+            <th scope="col">Accions</th>
+        </tr>
+        @foreach (var blog in LaLlistaDeBlogs)
+        {
+
+            <tr>
+                <td>
+                    @blog.Nom
+                </td>
+                <td>
+                    @blog.DataDePublicacio.ToString()
+                </td>
+                <td>
+                    @( string.Join(", ", blog.TitolsDelsPosts ))
+                </td>
+                <td>
+                    <a class="btn btn-dark" href="/editarblog/@blog.BlogId">Editar</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+@code
+{
+
+    protected List<BlogDto> LaLlistaDeBlogs;
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            var result = await _BL.RetrieveBlogs();
+            LaLlistaDeBlogs = result.Data;
+            StateHasChanged();
+        }
+    }
+}
