@@ -97,5 +97,35 @@ namespace Server.Test
             };
             return Task.FromResult(result);
         }
+
+        public Task<MethodResult<PostDto>> CreatePost(PostCreateParms parms)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<MethodResult<List<PostDto>>> RetrievePosts()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<MethodResult<PostDto>> RetrievePostById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<MethodResult<PostDto>> UpdatePost(PostUpdateParms parms)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<MethodResult<PostDto>> MovePost(PostMoveParms parms)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<MethodResult<PostDto>> DeletePost(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

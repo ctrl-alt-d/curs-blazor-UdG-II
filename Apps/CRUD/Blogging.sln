@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogging.Client.Transport",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogging.Client.Transport.Test", "Client.Transport.Test\Blogging.Client.Transport.Test.csproj", "{26455B7D-D3C3-4CE3-B27E-F7B0922E9170}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogLibClient", "BlogLibClient\BlogLibClient.csproj", "{04974F01-044B-4FA4-9342-F12A8BA3E034}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogging.Client.Components", "BlogLibClient\Blogging.Client.Components.csproj", "{04974F01-044B-4FA4-9342-F12A8BA3E034}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

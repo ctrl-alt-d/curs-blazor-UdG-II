@@ -49,5 +49,41 @@ namespace Blogging.Server.Controllers
         {
             return _BlogBusinessLayer.PublicaBlog(id);
         }
+
+        [HttpPost("[action]")]
+        public Task<MethodResult<PostDto>> CreatePost(PostCreateParms parms)
+        {
+            return _BlogBusinessLayer.CreatePost(parms);
+        }
+
+        [HttpGet("[action]")]
+        public Task<MethodResult<List<PostDto>>> RetrievePosts()
+        {
+            return _BlogBusinessLayer.RetrievePosts();
+        }
+
+        [HttpGet("[action]/{id:int}")]
+        public Task<MethodResult<PostDto>> RetrievePostById(int id)
+        {
+            return _BlogBusinessLayer.RetrievePostById(id);
+        }
+
+        [HttpPost("[action]")]
+        public Task<MethodResult<PostDto>> UpdatePost([FromBody] PostUpdateParms parms)
+        {
+            return _BlogBusinessLayer.UpdatePost(parms);
+        }
+
+        [HttpPost("[action]")]
+        public Task<MethodResult<PostDto>> MovePost([FromBody] PostMoveParms parms)
+        {
+            return _BlogBusinessLayer.MovePost(parms);
+        }
+
+        [HttpPost("[action]")]
+        public Task<MethodResult<PostDto>> DeletePost([FromBody] int id)
+        {
+            return _BlogBusinessLayer.DeletePost(id);
+        }
     }
 }

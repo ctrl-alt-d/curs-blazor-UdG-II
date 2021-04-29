@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlogLibClient\BlogLibClient.csproj" />
+    <ProjectReference Include="..\BlogLibClient\Blogging.Client.Components.csproj" />
     <ProjectReference Include="..\Client.Transport\Blogging.Client.Transport.csproj" />
     <ProjectReference Include="..\Shared\Blogging.Shared.csproj" />
   </ItemGroup>

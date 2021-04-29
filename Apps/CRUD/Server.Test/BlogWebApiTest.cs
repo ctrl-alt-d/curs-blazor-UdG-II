@@ -50,7 +50,7 @@ namespace Server.Test
             };
 
             // act
-            var response = await client.GetAsync("/api/Blog/GetAll");
+            var response = await client.GetAsync($"/api/Blog/{nameof(IBlogBusinessLayer.RetrieveBlogs)}");
 
             // assert: result code
             var expected_status_code = HttpStatusCode.OK;
@@ -79,7 +79,7 @@ namespace Server.Test
             };
 
             // act
-            var response = await client.PostAsJsonAsync("/api/Blog/Create", parms);
+            var response = await client.PostAsJsonAsync($"/api/Blog/{nameof(IBlogBusinessLayer.CreateBlog)}", parms);
 
             // assert: result code
             var expected_status_code = HttpStatusCode.OK;
@@ -92,6 +92,6 @@ namespace Server.Test
             methodresult.Should().IsSameOrEqualTo(methodresult_expected);
         }
 
-
+        /*  --- falta provar la resta de mètodes  --- */
     }
 }
