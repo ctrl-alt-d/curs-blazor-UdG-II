@@ -1,0 +1,79 @@
+﻿@inherits InputText
+
+
+<div class="@Css">
+    <label for="validationServer01" class="form-label">@Label</label>
+    <input type="text"
+           class="form-control @IsValid_txt"
+           id="validationServer01"
+           value="@(BindConverter.FormatValue(CurrentValue))"
+           @onchange="EventCallback.Factory.CreateBinder<string>(this, __value => CurrentValueAsString = __value, CurrentValueAsString)">
+
+    @if (!IsValid)
+    {
+        <div class="invalid-feedback">
+            <ValidationMessage For="@ValueExpression" />
+        </div>
+    }
+
+</div>
+
+
+@code {
+    [Parameter] public string Label { get; set; } = String.Empty;
+    [Parameter] public string Css { get; set; } = String.Empty;
+    [CascadingParameter] EditContext CurrentEditContext { get; set; } = default!;
+    private EditContext _previousEditContext;
+    private EventHandler<ValidationStateChangedEventArgs> _validationStateChangedHandler;
+    private FieldIdentifier _fieldIdentifier;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _validationStateChangedHandler = (sender, eventArgs) => _actualitza_validacio();
+    }
+
+    protected void _actualitza_validacio()
+    {
+        IsValid_txt = IsValid ? "is-valid" : "is-invalid";
+        StateHasChanged();
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        if (CurrentEditContext == null)
+        {
+            throw new InvalidOperationException($"{GetType()} requires a cascading parameter " +
+                $"of type {nameof(EditContext)}. For example, you can use {GetType()} inside " +
+                $"an {nameof(EditForm)}.");
+        }
+
+        var For = ValueExpression;
+
+        if (For == null) // Not possible except if you manually specify T
+        {
+            throw new InvalidOperationException($"{GetType()} requires a value for the " +
+                $"{nameof(For)} parameter.");
+        }
+        _fieldIdentifier = FieldIdentifier.Create(For);
+
+        if (CurrentEditContext != _previousEditContext)
+        {
+            DetachValidationStateChangedListener();
+            CurrentEditContext.OnValidationStateChanged += _validationStateChangedHandler;
+            _previousEditContext = CurrentEditContext;
+        }
+    }
+
+    private void DetachValidationStateChangedListener()
+    {
+        if (_previousEditContext != null)
+        {
+            _previousEditContext.OnValidationStateChanged -= _validationStateChangedHandler;
+        }
+    }
+
+    protected bool IsValid => !CurrentEditContext.GetValidationMessages(_fieldIdentifier).Any();
+    protected string IsValid_txt { get; set; } = "";
+}

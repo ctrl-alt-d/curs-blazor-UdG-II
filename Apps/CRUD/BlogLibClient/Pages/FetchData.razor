@@ -15,30 +15,35 @@
 else
 {
     <table class="table">
-        <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Data publicació</th>
-            <th scope="col">Títols dels posts</th>
-            <th scope="col">Accions</th>
-        </tr>
-        @foreach (var blog in LaLlistaDeBlogs)
-        {
+        <thead>
 
             <tr>
-                <td>
-                    @blog.Nom
-                </td>
-                <td>
-                    @blog.DataDePublicacio.ToString()
-                </td>
-                <td>
-                    @( string.Join(", ", blog.TitolsDelsPosts ))
-                </td>
-                <td>
-                    <a class="btn btn-dark" href="/editarblog/@blog.BlogId">Editar</a>
-                </td>
+                <th scope="col">Nom</th>
+                <th scope="col">Data publicació</th>
+                <th scope="col">Títols dels posts</th>
+                <th scope="col">Accions</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var blog in LaLlistaDeBlogs)
+            {
+
+                <tr>
+                    <td>
+                        @blog.Nom
+                    </td>
+                    <td>
+                        @blog.DataDePublicacio.ToString()
+                    </td>
+                    <td>
+                        @( string.Join(", ", blog.TitolsDelsPosts ))
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/editarblog/@blog.BlogId">Editar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 }
 

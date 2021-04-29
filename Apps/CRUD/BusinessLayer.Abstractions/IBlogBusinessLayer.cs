@@ -6,6 +6,11 @@ namespace BusinessLayer.Abstractionns
 {
     public interface IBlogBusinessLayer
     {
+
+        /* --------------------------------------------------------------------------- 
+           ----  Blogs
+           --------------------------------------------------------------------------- */
+
         // Create - Blogs
         Task<MethodResult<BlogDto>> CreateBlog(BlogCreateParms parms);
 
@@ -19,7 +24,9 @@ namespace BusinessLayer.Abstractionns
 
         // Delete - Blogs
 
-        /* ----------------------- */
+        /* ---------------------------------------------------------------------------          
+           ----  Posts 
+           --------------------------------------------------------------------------- */
 
         // Create - Posts
         Task<MethodResult<PostDto>> CreatePost(PostCreateParms parms);
@@ -31,7 +38,6 @@ namespace BusinessLayer.Abstractionns
         // Update - Posts
         Task<MethodResult<PostDto>> UpdatePost(PostUpdateParms parms);
         Task<MethodResult<PostDto>> MovePost(PostMoveParms parms);
-
 
         // Delete - Posts
         Task<MethodResult<PostDto>> DeletePost(int id);
