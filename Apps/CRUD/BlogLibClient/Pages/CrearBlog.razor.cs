@@ -25,8 +25,6 @@ namespace Blogging.Client.Components.Pages
 
         private async Task Submit()
         {
-
-
             var parms = new BlogCreateParms(
                 nomBlog: MyViewModel.Nom,
                 titolPrimerPost: MyViewModel.NomPost,
@@ -34,8 +32,13 @@ namespace Blogging.Client.Components.Pages
                 );
             var resultat = await _BL.CreateBlog(parms);
 
-            _NM.NavigateTo("/fetchdata");
+            // No comprovem si hi ha errors - Taller hands-on:
+            //    Comprovar si hi ha error
+            //    No sortir de la pàgina
+            //    Mostrar-lo
 
+            _NM.NavigateTo("/fetchdata");
+            return;
         }
 
     }

@@ -21,7 +21,7 @@ namespace BusinessLayer
             var blog = await ctx.Blogs.FindAsync(parms.BlogId);
             if (blog==null)
             {
-                return MethodErrorResult<PostDto>("Blog no trobat");
+                return ResultFactory.MethodErrorResult<PostDto>("Blog no trobat");
             }
 
             // body            
@@ -42,7 +42,7 @@ namespace BusinessLayer
             await ctx.SaveChangesAsync();
 
             // retornem
-            return AsMethodResult(ctx,post);
+            return post.AsMethodResult(ctx);
         }
 
         public async Task<MethodResult<PostDto>> DeletePost(int id)
@@ -53,7 +53,7 @@ namespace BusinessLayer
             var post = await ctx.Posts.FindAsync(id);
             if (post == null)
             {
-                return MethodErrorResult<PostDto>("Post no trobat");
+                return ResultFactory.MethodErrorResult<PostDto>("Post no trobat");
             }
 
             // body            
@@ -65,7 +65,7 @@ namespace BusinessLayer
             await ctx.SaveChangesAsync();
 
             // retornem
-            return AsMethodResult(ctx,post);
+            return post.AsMethodResult(ctx);
         }
 
         public async Task<MethodResult<PostDto>> MovePost(PostMoveParms parms)
@@ -76,13 +76,13 @@ namespace BusinessLayer
             var post = await ctx.Posts.FindAsync(parms.PostId);
             if (post == null)
             {
-                return MethodErrorResult<PostDto>("Post no trobat");
+                return ResultFactory.MethodErrorResult<PostDto>("Post no trobat");
             }
 
             var toBlog = await ctx.Blogs.FindAsync(parms.ToBlogId);
             if (toBlog == null)
             {
-                return MethodErrorResult<PostDto>("Blog no trobat");
+                return ResultFactory.MethodErrorResult<PostDto>("Blog no trobat");
             }
 
             // body            
@@ -94,7 +94,7 @@ namespace BusinessLayer
             await ctx.SaveChangesAsync();
 
             // retornem
-            return AsMethodResult(ctx,post);
+            return post.AsMethodResult(ctx);
         }
 
         public async Task<MethodResult<PostDto>> RetrievePostById(int id)
@@ -105,7 +105,7 @@ namespace BusinessLayer
             var post = await ctx.Posts.FindAsync(id);
             if (post == null)
             {
-                return MethodErrorResult<PostDto>("Post no trobat");
+                return ResultFactory.MethodErrorResult<PostDto>("Post no trobat");
             }
 
             // body            
@@ -117,7 +117,7 @@ namespace BusinessLayer
             await ctx.SaveChangesAsync();
 
             // retornem
-            return AsMethodResult(ctx,post);
+            return post.AsMethodResult(ctx);
         }
 
         public async Task<MethodResult<List<PostDto>>> RetrievePosts()
@@ -132,13 +132,13 @@ namespace BusinessLayer
                 ctx
                 .Posts
                 .Include(post => post.Blog)
-                .Select(post => AsDto(ctx, post))
+                .Select(post => post.AsDto(ctx))
                 .ToListAsync();
 
             // post condicions
 
             // retornem
-            return AsMethodResult(ctx,posts_dto);
+            return ResultFactory.AsMethodResult(ctx,posts_dto);
         }
 
         public async Task<MethodResult<PostDto>> UpdatePost(PostUpdateParms parms)
@@ -149,7 +149,7 @@ namespace BusinessLayer
             var post = await ctx.Posts.FindAsync(parms.PostId);
             if (post == null)
             {
-                return MethodErrorResult<PostDto>("Post no trobat");
+                return ResultFactory.MethodErrorResult<PostDto>("Post no trobat");
             }
 
             // body - updating post
@@ -167,7 +167,7 @@ namespace BusinessLayer
             await ctx.SaveChangesAsync();
 
             // retornem
-            return AsMethodResult(ctx,post);
+            return post.AsMethodResult(ctx);
         }
     }
 }

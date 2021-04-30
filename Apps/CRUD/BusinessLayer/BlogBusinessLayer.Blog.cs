@@ -19,6 +19,7 @@ namespace BusinessLayer
 
             // pre-condicions
 
+
             // body
             var blog = new Blog
             {
@@ -38,7 +39,7 @@ namespace BusinessLayer
             await ctx.SaveChangesAsync();
 
             // retornem
-            return AsMethodResult(ctx,blog);
+            return blog.AsMethodResult(ctx);
         }
 
         public async Task<MethodResult<BlogDto>> RetrieveBlogById(int id)
@@ -53,15 +54,13 @@ namespace BusinessLayer
             //
             if (blog == null)
             {
-                return MethodErrorResult<BlogDto>("No trobat");
+                return ResultFactory.MethodErrorResult<BlogDto>("No trobat");
             }
 
             // retornem
-            var result = AsMethodResult(ctx,blog);
+            var result = blog.AsMethodResult(ctx);
             return result;
         }
-
-
 
         public async Task<MethodResult<List<BlogDto>>> RetrieveBlogs()
         {
@@ -74,11 +73,11 @@ namespace BusinessLayer
                 await ctx
                 .Blogs
                 .Include(blog => blog.Posts)
-                .Select(blog => AsDto(ctx, blog))
+                .Select(blog => blog.AsDto(ctx))
                 .ToListAsync();
 
             // retornem
-            return AsMethodResult(ctx,blogs_dto);
+            return ResultFactory.AsMethodResult(ctx,blogs_dto);
         }
 
         public async Task<MethodResult<BlogDto>> PublicaBlog(int id)
@@ -93,7 +92,7 @@ namespace BusinessLayer
             //
             if (blog == null)
             {
-                return MethodErrorResult<BlogDto>("No trobat");
+                return ResultFactory.MethodErrorResult<BlogDto>("No trobat");
             }
 
             blog.DiaDePublicacio = DateTime.Now;
@@ -102,10 +101,9 @@ namespace BusinessLayer
             await ctx.SaveChangesAsync();
 
             // retornem
-            var result = AsMethodResult(ctx,blog);
+            var result = blog.AsMethodResult(ctx);
             return result;
         }
-
 
         public async Task<MethodResult<BlogDto>> CanviaNom(BlogCanviaNomParms parms)
         {
@@ -119,13 +117,13 @@ namespace BusinessLayer
             //
             if (blog == null)
             {
-                return MethodErrorResult<BlogDto>("No trobat");
+                return ResultFactory.MethodErrorResult<BlogDto>("No trobat");
             }
 
             //
             if (blog.DiaDePublicacio.HasValue)
             {
-                return MethodErrorResult<BlogDto>("No li podem canviar el nom a un blog publicat");
+                return ResultFactory.MethodErrorResult<BlogDto>("No li podem canviar el nom a un blog publicat");
             }
 
 
@@ -136,7 +134,7 @@ namespace BusinessLayer
             await ctx.SaveChangesAsync();
 
             // retornem
-            var result = AsMethodResult(ctx,blog);
+            var result = blog.AsMethodResult(ctx);
             return result;
         }
     }
