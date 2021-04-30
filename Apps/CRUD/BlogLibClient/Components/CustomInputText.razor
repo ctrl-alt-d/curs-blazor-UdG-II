@@ -1,6 +1,14 @@
 ﻿@inherits InputText
 
 
+@*
+   Hands-on: aquest control hereta d'InputText i sobreescriu el render per adaptar-lo a bootstrap
+   Per saber-ne més:
+      Edit context: https://github.com/dotnet/aspnetcore/tree/main/src/Components/Forms/src
+      InputText i ValidationMessage: https://github.com/dotnet/aspnetcore/tree/main/src/Components/Web/src/Forms
+      
+*@
+
 <div class="@Css">
     <label for="validationServer01" class="form-label">@Label</label>
     <input type="text"
@@ -50,14 +58,12 @@
                 $"an {nameof(EditForm)}.");
         }
 
-        var For = ValueExpression;
-
-        if (For == null) // Not possible except if you manually specify T
+        if (ValueExpression == null) 
         {
             throw new InvalidOperationException($"{GetType()} requires a value for the " +
-                $"{nameof(For)} parameter.");
+                $"{nameof(ValueExpression)} parameter.");
         }
-        _fieldIdentifier = FieldIdentifier.Create(For);
+        _fieldIdentifier = FieldIdentifier.Create(ValueExpression);
 
         if (CurrentEditContext != _previousEditContext)
         {
