@@ -1,0 +1,33 @@
+﻿@page "/editarblog/{Id:int}"
+
+@inject IBlogBusinessLayer _BL
+@inject NavigationManager _NM
+
+@using System.ComponentModel.DataAnnotations
+
+<br />
+<h3>Estem editant el blog @Id - @MyEditBlogCanviNomModel.Nom </h3>
+
+<EditForm Model="MyEditBlogCanviNomModel" OnValidSubmit="Submit" class="row">
+
+    <DataAnnotationsValidator />
+
+    <CustomInputText @bind-Value="MyEditBlogCanviNomModel.Nom"
+                     Label="Nom del blog"
+                     Css="col-md-4" />
+
+    @* 
+        hands-on: Aquí sota hi ha un control input de blazor, sense integració bootstrap:
+        https://getbootstrap.com/docs/5.0/forms/form-control/
+    *@
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Nou nom:</label>
+        <InputText class="form-control" @bind-Value="MyEditBlogCanviNomModel.Nom" />
+        <ValidationMessage For="()=>MyEditBlogCanviNomModel.Nom" />
+    </div>
+
+    <div class="col-12 mt-3">
+        <button class="btn btn-primary" type="submit">Canviar el nom</button>
+    </div>
+</EditForm>

@@ -1,0 +1,66 @@
+﻿@page "/fetchdata"
+
+
+@inject IBlogBusinessLayer _BL
+
+<div class="d-flex">
+    <div class="p-2"><h1 >Blogs</h1></div>
+    <div class="ms-auto align-self-center p-2"><a href="/Crearblog" class="btn btn-primary btn-sm">Crear un nou blog</a></div>
+</div>
+
+
+@if (LaLlistaDeBlogs == null)
+{
+    <p class="">Loading ...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Data publicació</th>
+                <th scope="col">Títols dels posts</th>
+                <th scope="col">Accions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blog in LaLlistaDeBlogs)
+            {
+
+                <tr>
+                    <td>
+                        @blog.Nom
+                    </td>
+                    <td>
+                        @blog.DataDePublicacio.ToString()
+                    </td>
+                    <td>
+                        @( string.Join(", ", blog.TitolsDelsPosts ))
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/editarblog/@blog.BlogId">Editar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+
+    protected List<BlogDto> LaLlistaDeBlogs;
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            var result = await _BL.RetrieveBlogs();
+            LaLlistaDeBlogs = result.Data;
+            StateHasChanged();
+        }
+    }
+}
