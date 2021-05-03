@@ -34,13 +34,13 @@ namespace ScoreboardUI.Test
 
             // Assert: Ha de contenir les scorens
             cut
-                .Find(".score.homescore")
+                .Find(".score .homescore")
                 .TextContent
                 .Should()
                 .Be(expectedHome);
 
             cut
-                .Find(".score.awayscore")
+                .Find(".score .awayscore")
                 .TextContent
                 .Should()
                 .Be(expectedAway);
