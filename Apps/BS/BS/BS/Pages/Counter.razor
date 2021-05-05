@@ -1,0 +1,23 @@
+﻿@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<BSProgressBar progress="@currentCount"/>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<BSAlert @ref="MyAlerts" />
+
+@code {
+    private int currentCount = 0;
+
+    protected BSAlert MyAlerts { get; set; }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+        MyAlerts.MostraAixo( $"Anem pel número {currentCount}");
+    }
+}
