@@ -1,0 +1,49 @@
+﻿@page "/"
+
+<form>
+    <BSInput label="Email address"
+             helpText="We'll never share your email with anyone else."
+             @bind-Value="email"
+             />
+
+    <BSInput label="Password"
+             type="password"
+             helpText=""
+             @bind-Value="password"
+             />
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" @bind="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="button" @onclick="hanfetclick" class="btn btn-primary">Submit</button>
+</form>
+
+<div class="card mt-3">
+    <div class="card-header">
+        Dades del formulari
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Email: @email</h5>
+        <p class="card-text">Checkbox: @(checkbox?"Activat":"Desactivat")</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
+
+<BSAlert @ref="alert" />
+
+
+
+@code
+{
+    protected string email { get; set; }
+    protected string password { get; set; }
+    protected bool checkbox { get; set; }
+    protected BSAlert alert { get; set; }
+
+    protected void hanfetclick()
+    {
+        alert.MostraAixo($"La password és:  {password}");
+    }
+
+}

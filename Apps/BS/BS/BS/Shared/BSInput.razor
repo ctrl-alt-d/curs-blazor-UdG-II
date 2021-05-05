@@ -1,0 +1,38 @@
+﻿<div class="mb-3">
+    <label for="idattr" class="form-label">@label</label>
+    <input type="@type"
+           @bind="Value"
+           class="form-control" id="idattr" aria-describedby="emailHelp">
+
+    @if (!string.IsNullOrWhiteSpace(helpText))
+    {
+        <div id="@(idattr)Help" class="form-text">@helpText</div>
+    }
+
+</div>
+
+@code{
+    [Parameter] public string label { get; set; }
+
+    [Parameter] public string idattr { get; set; } = Guid.NewGuid().ToString()[^5..];
+
+    [Parameter] public string helpText { get; set; }
+    [Parameter] public string type { get; set; } = "text";
+
+
+    private string _value;
+
+    [Parameter]
+    public string Value
+    {
+        get => _value;
+        set
+        {
+            if (_value == value) return;
+            _value = value;
+            ValueChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+}

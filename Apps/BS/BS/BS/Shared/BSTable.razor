@@ -1,0 +1,17 @@
+﻿@typeparam T
+
+<table class="table">
+    <thead>
+        <tr>
+            @Head
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in datasource)
+        {
+            <tr>
+                @Body(item)
+            </tr>
+        }
+    </tbody>
+</table>

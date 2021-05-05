@@ -1,0 +1,19 @@
+﻿<div class="progress my-3">
+  <div class="progress-bar bg-@(estat)"
+       role="progressbar"
+       style="width: @(progresdelabarra)%"
+       aria-valuenow="@(progresdelabarra)" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+@code {
+
+    [Parameter] public int progress { get; set; }
+
+    protected int progresdelabarra => progress % 100;
+
+    protected string estat =>
+        progress < 33 ? "success" :
+        progress < 66 ? "warning" :
+        "danger";
+
+}
